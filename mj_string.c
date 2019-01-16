@@ -1,8 +1,11 @@
 #include <ctype.h>
 #include "mj_string.h"
 
-/* Reverse a string: "abcde" -> "edcba" */
-inline void reverse_string(char* start, char* end) {
+/*
+Reverse a string: "abcde" -> "edcba"
+Time Complexity: O(N/2); Space Complexity: O(1)
+*/
+void reverse_string(char* start, char* end) {
   while(end>start) {
     char tmp = *end;
     *end = *start;
@@ -12,8 +15,11 @@ inline void reverse_string(char* start, char* end) {
   }
 }
 
-/* Trim a string by removing unnecessary space charaters: "  a  b  " -> "a b" */
-inline void trim_string(char * s) {
+/*
+Trim a string by removing unnecessary space charaters: "  a  b  " -> "a b"
+Time Complexity: O(N); Space Complexity: O(1)
+*/
+void trim_string(char * s) {
   char * runner;
   char * chaser;
   for (runner = s, chaser = s; *runner != '\0'; runner++) {
