@@ -1,21 +1,30 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "mj_string.h"
-#include "mj_sort.h"
+#include "mjString.h"
+#include "mjSort.h"
+#include "mjLinkedList.h"
 
 int main(int argc, char const *argv[]) {
+  mjLinkedList* obj = mjLinkedListCreate();
+  mjLinkedListAddAtHead(obj, 5);
+  mjLinkedListAddAtHead(obj, 2);
+  mjLinkedListDeleteAtIndex(obj, 1);
+  mjLinkedListAddAtIndex(obj, 1, 9);
+  mjLinkedListAddAtHead(obj, 4);
+  mjLinkedListAddAtHead(obj, 9);
+  mjLinkedListAddAtHead(obj, 8);
+  int param_1 = mjLinkedListGet(obj, 3);
+  mjLinkedListAddAtTail(obj, 1);
+  mjLinkedListAddAtIndex(obj, 3, 6);
+  mjLinkedListAddAtHead(obj, 3);
 
-  int a1[10] = {0, 37, 28, 1913, -12387, 28, 0, 19, -1, 10};
-  int a2[1] = {0};
+  mjLinkedListChange(obj, 3, 8);
 
-  merge_sort(a1, 10);
-  merge_sort(a2, 1);
-
-  for (int i = 0; i < 10; i++) {
-    printf("%d ", a1[i]);
+  struct node * cur = obj->head;
+  while (cur) {
+    printf("%d ", cur->val);
+    cur = cur->next;
   }
-  printf("\n");
-  printf("%d ", a2[0]);
   printf("\n");
 
   return 0;

@@ -1,11 +1,11 @@
 #include <ctype.h>
-#include "mj_string.h"
+#include "mjString.h"
 
 /*
 Reverse a string: "abcde" -> "edcba"
 Time Complexity: O(N/2); Space Complexity: O(1)
 */
-void reverse_string(char* start, char* end) {
+void reverseString(char* start, char* end) {
   while(end>start) {
     char tmp = *end;
     *end = *start;
@@ -19,7 +19,7 @@ void reverse_string(char* start, char* end) {
 Trim a string by removing unnecessary space charaters: "  a  b  " -> "a b"
 Time Complexity: O(N); Space Complexity: O(1)
 */
-void trim_string(char * s) {
+void trimString(char * s) {
   char * runner;
   char * chaser;
   for (runner = s, chaser = s; *runner != '\0'; runner++) {
