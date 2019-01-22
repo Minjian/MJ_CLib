@@ -38,4 +38,13 @@ void mjLinkedListAddAtIndex(mjLinkedList* obj, int index, elem_t val);<br>
 void mjLinkedListDeleteAtIndex(mjLinkedList* obj, int index);<br>
 
 * Destroy the linked list.<br>
-void mjLinkedListFree(mjLinkedList* obj);
+void mjLinkedListFree(mjLinkedList* obj);<br>
+
+* Reverse the linked list: 1->2->3->4 become 4->3->2->1<br>
+void mjReverseList(mjLinkedList* obj);<br>
+
+* Check if the linked list is palindrome: 1->2 false; 1->2->2->1 true<br>
+bool mjIsPalindromeList(mjLinkedList* obj);<br>
+
+* Print out the linked list<br>
+void mjPrintList(mjLinkedList* obj);<br>

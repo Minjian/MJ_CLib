@@ -1,7 +1,8 @@
+#include <stdio.h>
 #include <stdlib.h>
 #include "mjLinkedList.h"
 
-/** Initialize your data structure here. */
+/* Initialize your data structure here. */
 mjLinkedList* mjLinkedListCreate() {
   mjLinkedList * ls = (mjLinkedList *) malloc(sizeof(mjLinkedList));
   ls->head = NULL;
@@ -10,7 +11,7 @@ mjLinkedList* mjLinkedListCreate() {
   return ls;
 }
 
-/** Get the value of the index-th node in the linked list. If the index is invalid, return -1. */
+/* Get the value of the index-th node in the linked list. If the index is invalid, return -1. */
 int mjLinkedListGet(mjLinkedList* obj, int index) {
   if (index < 0 || index >= obj->size) return -1;
   struct node * cur = obj->head;
@@ -20,7 +21,7 @@ int mjLinkedListGet(mjLinkedList* obj, int index) {
   return cur->val;
 }
 
-/** Change the value of the index-th node in the linked list. If the index is invalid, return. */
+/* Change the value of the index-th node in the linked list. If the index is invalid, return. */
 void mjLinkedListChange(mjLinkedList* obj, int index, elem_t val) {
   if (index < 0 || index >= obj->size) return;
   struct node * cur = obj->head;
@@ -30,7 +31,7 @@ void mjLinkedListChange(mjLinkedList* obj, int index, elem_t val) {
   cur->val = val;
 }
 
-/** Add a node of value val before the first element of the linked list. After the insertion, the new node will be the first node of the linked list. */
+/* Add a node of value val before the first element of the linked list. After the insertion, the new node will be the first node of the linked list. */
 void mjLinkedListAddAtHead(mjLinkedList* obj, elem_t val) {
   struct node * newNode = (struct node *) malloc(sizeof(struct node));
   newNode->val = val;
@@ -40,7 +41,7 @@ void mjLinkedListAddAtHead(mjLinkedList* obj, elem_t val) {
   if (obj->size == 1) obj->tail = obj->head;
 }
 
-/** Append a node of value val to the last element of the linked list. */
+/* Append a node of value val to the last element of the linked list. */
 void mjLinkedListAddAtTail(mjLinkedList* obj, elem_t val) {
   if (obj->tail) {
     struct node * newNode = (struct node *) malloc(sizeof(struct node));
@@ -55,7 +56,7 @@ void mjLinkedListAddAtTail(mjLinkedList* obj, elem_t val) {
   }
 }
 
-/** Add a node of value val before the index-th node in the linked list. If index equals to the length of linked list, the node will be appended to the end of linked list. If index is greater than the length, the node will not be inserted. */
+/* Add a node of value val before the index-th node in the linked list. If index equals to the length of linked list, the node will be appended to the end of linked list. If index is greater than the length, the node will not be inserted. */
 void mjLinkedListAddAtIndex(mjLinkedList* obj, int index, elem_t val) {
   if (index < 0 || index > obj->size) return;
   else if (index == 0) {
@@ -77,7 +78,7 @@ void mjLinkedListAddAtIndex(mjLinkedList* obj, int index, elem_t val) {
   }
 }
 
-/** Delete the index-th node in the linked list, if the index is valid. */
+/* Delete the index-th node in the linked list, if the index is valid. */
 void mjLinkedListDeleteAtIndex(mjLinkedList* obj, int index) {
   if (index < 0 || index >= obj->size) return;
   else if (index == 0) {
@@ -115,4 +116,72 @@ void mjLinkedListFree(mjLinkedList* obj) {
     free(pre_node);
   }
   free(obj);
+}
+
+/* Reverse the linked list: 1->2->3->4 become 4->3->2->1 */
+void mjReverseList(mjLinkedList* obj) {
+  if (obj == NULL) return;
+  if (obj->head == NULL || obj->head->next == NULL) return;
+
+  struct node * curNode = obj->head;
+  while (curNode->next) {
+    struct node * nextNode = curNode->next;
+    curNode->next = nextNode->next;
+    nextNode->next = obj->head;
+    obj->head = nextNode;
+  }
+  obj->tail = curNode;
+}
+
+/* Hash Value function used to create a unique key based on first half of the linked list */
+static float hashValue(mjLinkedList* obj, int mIndex) {
+  if (obj == NULL) return 0;
+  float key = 0;
+  struct node* cur = obj->head;
+  while (mIndex >= 0 && cur) {
+    if (mIndex % 2 == 0) key += (cur->val / (mIndex+1.0));
+    else key -= (cur->val / (mIndex+1.0));
+    cur = cur->next;
+    mIndex--;
+  }
+  return key;
+}
+
+/* Check if the linked list is palindrome: 1->2 false; 1->2->2->1 true; empty linked list is true */
+bool mjIsPalindromeList(mjLinkedList* obj) {
+  if (obj == NULL || obj->head == NULL) return true;
+  else if(obj->head->next == NULL) return true;
+  else {
+    int size = 0;
+    struct node* cur = obj->head;
+    while (cur) {
+      cur = cur->next;
+      size++;
+    }
+    int mIndex = (size % 2 == 0)? (size/2-1) : (size/2);
+
+    //Key1 for original list
+    float key1 = hashValue(obj, mIndex);
+    //Key2 for reversed list
+    mjReverseList(obj);
+    float key2 = hashValue(obj, mIndex);
+    //Restore the linked list
+    mjReverseList(obj);
+    return key1 == key2;
+  }
+}
+
+/* Print out the linked list */
+void mjPrintList(mjLinkedList* obj) {
+  if (obj == NULL) {
+    printf("The linked list hasn't been created\n");
+    return;
+  }
+
+  struct node * cur = obj->head;
+  while (cur) {
+    printf("%d ", cur->val);
+    cur = cur->next;
+  }
+  printf("\n");
 }

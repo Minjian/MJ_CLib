@@ -19,13 +19,14 @@ int main(int argc, char const *argv[]) {
   mjLinkedListAddAtHead(obj, 3);
 
   mjLinkedListChange(obj, 3, 8);
+  mjPrintList(obj);
 
-  struct node * cur = obj->head;
-  while (cur) {
-    printf("%d ", cur->val);
-    cur = cur->next;
-  }
-  printf("\n");
+  mjReverseList(obj);
+  mjPrintList(obj);
+
+  printf("%d\n", (int)mjIsPalindromeList(obj));
+  mjPrintList(obj);
+
 
   return 0;
 }

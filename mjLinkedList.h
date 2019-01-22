@@ -1,6 +1,8 @@
 #ifndef _MJ_LINKEDLIST_H
 #define _MJ_LINKEDLIST_H
 
+#include <stdbool.h>
+
 typedef int elem_t;
 
 typedef struct {
@@ -38,4 +40,12 @@ void mjLinkedListDeleteAtIndex(mjLinkedList* obj, int index);
 /* Destroy the linked list */
 void mjLinkedListFree(mjLinkedList* obj);
 
+/* Reverse the linked list: 1->2->3->4 become 4->3->2->1 */
+void mjReverseList(mjLinkedList* obj);
+
+/* Check if the linked list is palindrome: 1->2 false; 1->2->2->1 true */
+bool mjIsPalindromeList(mjLinkedList* obj);
+
+/* Print out the linked list */
+void mjPrintList(mjLinkedList* obj);
 #endif
