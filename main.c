@@ -27,6 +27,8 @@ int main(int argc, char const *argv[]) {
   printf("%d\n", (int)mjIsPalindromeList(obj));
   mjPrintList(obj);
 
+  mjDelElements(obj, 8);
+  mjPrintList(obj);
 
   return 0;
 }

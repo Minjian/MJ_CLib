@@ -37,6 +37,9 @@ void mjLinkedListAddAtIndex(mjLinkedList* obj, int index, elem_t val);
 /* Delete the index-th node in the linked list, if the index is valid. */
 void mjLinkedListDeleteAtIndex(mjLinkedList* obj, int index);
 
+/* Delete all nodes having val: 1->2->6->3->4->5->6, val = 6; become 1->2->3->4->5 */
+void mjDelElements(mjLinkedList* obj, int val);
+
 /* Destroy the linked list */
 void mjLinkedListFree(mjLinkedList* obj);
 

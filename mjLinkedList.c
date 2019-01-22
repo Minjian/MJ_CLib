@@ -107,6 +107,31 @@ void mjLinkedListDeleteAtIndex(mjLinkedList* obj, int index) {
   }
 }
 
+/* Delete all nodes having val: 1->2->6->3->4->5->6, val = 6; become 1->2->3->4->5 */
+void mjDelElements(mjLinkedList* obj, int val) {
+  if (obj == NULL || obj->head == NULL) return;
+  //remove the head elements if they are the targets
+  while (obj->head && obj->head->val == val) {
+    struct node* rm = obj->head;
+    obj->head = obj->head->next;
+    free(rm);
+    obj->size--;
+  }
+  if (obj->head == NULL) return;
+
+  struct node * cur = obj->head;
+  while (cur) {
+    while (cur->next && cur->next->val == val) {
+      struct node * rm = cur->next;
+      cur->next = cur->next->next;
+      free(rm);
+      obj->size--;
+    }
+    if (cur->next == NULL) obj->tail = cur;
+    cur = cur->next;
+  }
+}
+
 /* Destroy the linked list */
 void mjLinkedListFree(mjLinkedList* obj) {
   struct node * pre_node;
