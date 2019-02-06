@@ -1,5 +1,6 @@
 # MJ_CLib
-My C library contains some common data structures and algorithms
+My C library contains some common data structures and algorithms<br>
+(still updating, stay tuned!)<br>
 
 ## MJ_String
 * Reverse a string: "abcde" -> "edcba" <br>
