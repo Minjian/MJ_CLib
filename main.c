@@ -1,34 +1,54 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "mjString.h"
-#include "mjSort.h"
-#include "mjLinkedList.h"
+#include "mjCircularQueue.h"
+
+/*
+Types of Test Cases:
+.Expected Input
+.Empty Input
+.Malformed Input
+.Large Input
+.Null Input
+.Other Edge Cases
+*/
 
 int main(int argc, char const *argv[]) {
-  mjLinkedList* obj = mjLinkedListCreate();
-  mjLinkedListAddAtHead(obj, 5);
-  mjLinkedListAddAtHead(obj, 2);
-  mjLinkedListDeleteAtIndex(obj, 1);
-  mjLinkedListAddAtIndex(obj, 1, 9);
-  mjLinkedListAddAtHead(obj, 4);
-  mjLinkedListAddAtHead(obj, 9);
-  mjLinkedListAddAtHead(obj, 8);
-  int param_1 = mjLinkedListGet(obj, 3);
-  mjLinkedListAddAtTail(obj, 1);
-  mjLinkedListAddAtIndex(obj, 3, 6);
-  mjLinkedListAddAtHead(obj, 3);
+  int ret = 0;
+  mjCircularQueue* obj = mjCircularQueueCreate(5);
+  printf("%d\n", (int) mjCircularQueueIsFull(obj));
+  printf("%d\n", (int) mjCircularQueueIsEmpty(obj));
+  mjCircularQueueEnQueue(obj, 12);
+  mjCircularQueueEnQueue(obj, 13);
+  printf("%d\n", (int) mjCircularQueueIsFull(obj));
+  printf("%d\n", (int) mjCircularQueueIsEmpty(obj));
+  mjCircularQueueEnQueue(obj, 120);
+  mjCircularQueueEnQueue(obj, 112);
+  mjCircularQueueEnQueue(obj, 92);
+  mjCircularQueueDeQueue(obj, &ret);
+  mjCircularQueueDeQueue(obj, &ret);
+  mjCircularQueueEnQueue(obj, 2);
+  mjCircularQueueEnQueue(obj, 9);
 
-  mjLinkedListChange(obj, 3, 8);
-  mjPrintList(obj);
+  printf("%d\n", (int) mjCircularQueueIsFull(obj));
+  printf("%d\n", (int) mjCircularQueueIsEmpty(obj));
+  mjPrintCircularQueue(obj);
 
-  mjReverseList(obj);
-  mjPrintList(obj);
+  mjCircularQueueDeQueue(obj, &ret);
+  printf("%d\n", ret);
+  mjCircularQueueDeQueue(obj, &ret);
+  printf("%d\n", ret);
+  mjCircularQueueDeQueue(obj, &ret);
+  printf("%d\n", ret);
+  mjCircularQueueDeQueue(obj, &ret);
+  printf("%d\n", ret);
+  mjCircularQueueDeQueue(obj, &ret);
+  printf("%d\n", ret);
+  mjCircularQueueDeQueue(obj, &ret);
+  printf("%d\n", ret);
+  mjCircularQueueEnQueue(obj, 3);
 
-  printf("%d\n", (int)mjIsPalindromeList(obj));
-  mjPrintList(obj);
-
-  mjDelElements(obj, 8);
-  mjPrintList(obj);
-
+  printf("%d\n", (int) mjCircularQueueIsFull(obj));
+  printf("%d\n", (int) mjCircularQueueIsEmpty(obj));
+  mjCircularQueueFree(obj);
   return 0;
 }
