@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "mjCircularQueue.h"
+#include "mjQueue.h"
 
 /*
 Types of Test Cases:
@@ -14,41 +14,37 @@ Types of Test Cases:
 
 int main(int argc, char const *argv[]) {
   int ret = 0;
-  mjCircularQueue* obj = mjCircularQueueCreate(5);
-  printf("%d\n", (int) mjCircularQueueIsFull(obj));
-  printf("%d\n", (int) mjCircularQueueIsEmpty(obj));
-  mjCircularQueueEnQueue(obj, 12);
-  mjCircularQueueEnQueue(obj, 13);
-  printf("%d\n", (int) mjCircularQueueIsFull(obj));
-  printf("%d\n", (int) mjCircularQueueIsEmpty(obj));
-  mjCircularQueueEnQueue(obj, 120);
-  mjCircularQueueEnQueue(obj, 112);
-  mjCircularQueueEnQueue(obj, 92);
-  mjCircularQueueDeQueue(obj, &ret);
-  mjCircularQueueDeQueue(obj, &ret);
-  mjCircularQueueEnQueue(obj, 2);
-  mjCircularQueueEnQueue(obj, 9);
-
-  printf("%d\n", (int) mjCircularQueueIsFull(obj));
-  printf("%d\n", (int) mjCircularQueueIsEmpty(obj));
-  mjPrintCircularQueue(obj);
-
-  mjCircularQueueDeQueue(obj, &ret);
+  mjLinkedListQueue* obj = mjLinkedListQueueCreate();
+  printf("%d\n", (int) mjLinkedListQueueIsEmpty(obj));
+  mjLinkedListQueueEnQueue(obj, 12);
+  mjLinkedListQueueEnQueue(obj, 13);
+  printf("%d\n", (int) mjLinkedListQueueIsEmpty(obj));
+  mjLinkedListQueueEnQueue(obj, 120);
+  mjLinkedListQueueEnQueue(obj, 112);
+  mjLinkedListQueueEnQueue(obj, 92);
+  mjLinkedListQueueDeQueue(obj, &ret);
+  mjLinkedListQueueDeQueue(obj, &ret);
+  mjLinkedListQueueEnQueue(obj, 2);
+  mjLinkedListQueueEnQueue(obj, 9);
+  printf("%d\n", (int) mjLinkedListQueueIsEmpty(obj));
+  mjLinkedListQueueDeQueue(obj, &ret);
   printf("%d\n", ret);
-  mjCircularQueueDeQueue(obj, &ret);
+  mjLinkedListQueueDeQueue(obj, &ret);
   printf("%d\n", ret);
-  mjCircularQueueDeQueue(obj, &ret);
+  mjLinkedListQueueDeQueue(obj, &ret);
   printf("%d\n", ret);
-  mjCircularQueueDeQueue(obj, &ret);
+  mjLinkedListQueueDeQueue(obj, &ret);
   printf("%d\n", ret);
-  mjCircularQueueDeQueue(obj, &ret);
+  mjLinkedListQueueDeQueue(obj, &ret);
   printf("%d\n", ret);
-  mjCircularQueueDeQueue(obj, &ret);
+  mjLinkedListQueueDeQueue(obj, &ret);
   printf("%d\n", ret);
-  mjCircularQueueEnQueue(obj, 3);
-
-  printf("%d\n", (int) mjCircularQueueIsFull(obj));
-  printf("%d\n", (int) mjCircularQueueIsEmpty(obj));
-  mjCircularQueueFree(obj);
+  mjLinkedListQueueEnQueue(obj, 3);
+  mjLinkedListQueueEnQueue(obj, 120);
+  mjLinkedListQueueEnQueue(obj, 112);
+  mjLinkedListQueueEnQueue(obj, 92);
+  printf("%d\n", (int) mjLinkedListQueueIsEmpty(obj));
+  mjPrintLinkedListQueue(obj);
+  mjLinkedListQueueFree(obj);
   return 0;
 }

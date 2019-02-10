@@ -53,31 +53,40 @@ bool mjIsPalindromeList(mjLinkedList* obj);<br>
 * Print out the linked list<br>
 void mjPrintList(mjLinkedList* obj);<br>
 
-## MJ_Circular_Queue
-(Use an Array to implement queue) <br>
-* Initialize your data structure here. Set the size of the queue to be k.<br>
+## MJ_Queue
+Use an Array to implement the circular queue & Use mjLinkedList to implement the linked-list queue <br>
+
+* Initialize queue, circular queue requires a size k<br>
 mjCircularQueue* mjCircularQueueCreate(int k);<br>
+mjLinkedListQueue* mjLinkedListQueueCreate();<br>
 
-* Insert an element into the circular queue. Return true if the operation is successful.<br>
+* Insert an element into the queue<br>
 bool mjCircularQueueEnQueue(mjCircularQueue* obj, elem_t value);<br>
+void mjLinkedListQueueEnQueue(mjLinkedListQueue* obj, elem_t value);<br>
 
-* Delete an element from the circular queue and return as value. Return true if the operation is successful.<br>
+* Delete an element from the queue<br>
 bool mjCircularQueueDeQueue(mjCircularQueue* obj, elem_t * value);<br>
+void mjLinkedListQueueDeQueue(mjLinkedListQueue* obj, elem_t * value);<br>
 
-* Get the front item from the queue.<br>
+* Get the front item from the queue<br>
 elem_t mjCircularQueueFront(mjCircularQueue* obj);<br>
+elem_t mjLinkedListQueueFront(mjLinkedListQueue* obj);<br>
 
-* Get the last item from the queue.<br>
+* Get the last item from the queue. <br>
 elem_t mjCircularQueueRear(mjCircularQueue* obj);<br>
+elem_t mjLinkedListQueueRear(mjLinkedListQueue* obj);<br>
 
-* Checks whether the circular queue is empty or not.<br>
+* Checks whether the queue is empty or not. <br>
 bool mjCircularQueueIsEmpty(mjCircularQueue* obj);<br>
+bool mjLinkedListQueueIsEmpty(mjLinkedListQueue* obj);<br>
 
-* Checks whether the circular queue is full or not.<br>
+* Checks whether the circular queue is full or not. <br>
 bool mjCircularQueueIsFull(mjCircularQueue* obj);<br>
 
-* Destroy the circular queue<br>
+* Destroy the queue <br>
 void mjCircularQueueFree(mjCircularQueue* obj);<br>
+void mjLinkedListQueueFree(mjLinkedListQueue* obj);<br>
 
-* Print out the circular queue<br>
+* Print out the circular queue <br>
 void mjPrintCircularQueue(mjCircularQueue* obj);<br>
+void mjPrintLinkedListQueue(mjLinkedListQueue* obj);

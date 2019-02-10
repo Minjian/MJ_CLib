@@ -93,6 +93,7 @@ void mjLinkedListDeleteAtIndex(mjLinkedList* obj, int index) {
     while (cur->next != obj->tail) cur = cur->next;
     free(cur->next);
     obj->tail = cur;
+    cur->next = NULL;
     obj->size--;
     return;
   }
